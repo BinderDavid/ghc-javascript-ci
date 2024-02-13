@@ -20,4 +20,14 @@ jobs:
           run: emconfigure ghcup install ghc --set javascript-unknown-ghcjs-9.6.2
         - name: Build project
           run: cabal build
+        - name: Move files
+          run: |
+            mkdir ./public
+            mv dist-newstyle/build/javascript-ghcjs/ghc-9.6.2/ghc-javascript-example-0.1.0.0/x/ghc-javascript-example/build/ghc-javascript-example/ghc-javascript-example.jsexe/index.html ./public
+            mv dist-newstyle/build/javascript-ghcjs/ghc-9.6.2/ghc-javascript-example-0.1.0.0/x/ghc-javascript-example/build/ghc-javascript-example/ghc-javascript-example.jsexe/all.js ./public
+        - name: Deploy
+          uses: peaceiris/actions-gh-pages@v3
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: ./public
 
