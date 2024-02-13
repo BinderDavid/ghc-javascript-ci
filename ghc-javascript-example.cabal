@@ -1,0 +1,26 @@
+cabal-version:      3.0
+name:               ghc-javascript-example
+version:            0.1.0.0
+-- synopsis:
+-- description:
+license:            BSD-3-Clause
+license-file:       LICENSE
+author:             David Binder
+maintainer:         david.binder@uni-tuebingen.de
+-- copyright:
+category:           Web
+build-type:         Simple
+extra-doc-files:    CHANGELOG.md
+-- extra-source-files:
+
+common warnings
+    ghc-options: -Wall
+
+executable ghc-javascript-example
+    import:           warnings
+    main-is:          Main.hs
+    -- other-modules:
+    -- other-extensions:
+    build-depends:    base ^>=4.18.1.0
+    hs-source-dirs:   app
+    default-language: Haskell2010
