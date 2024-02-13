@@ -19,5 +19,5 @@ jobs:
         - name: Install GHC cross compiler
           run: emconfigure ghcup install ghc --set javascript-unknown-ghcjs-9.6.2
         - name: Build project
-          run: cabal --with-compiler=javascript-unknown-ghcjs-ghc build
+          run: cabal --with-compiler=javascript-unknown-ghcjs-ghc --with-ghc-pkg=javascript-unknown-ghcjs-ghc-pkg build
 
