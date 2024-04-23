@@ -16,17 +16,19 @@ jobs:
         # We follow the instructions from: https://www.haskell.org/ghcup/guide/#cross-support
         - name: Install emscripten
           uses: mymindstorm/setup-emsdk@v14
+          with:
+            version: 3.1.57
         - name: Add GHCup release channel for crosscompiler
           run: ghcup config add-release-channel https://raw.githubusercontent.com/haskell/ghcup-metadata/develop/ghcup-cross-0.0.8.yaml
         - name: Install GHC cross compiler
-          run: emconfigure ghcup install ghc --set javascript-unknown-ghcjs-9.6.2
+          run: emconfigure ghcup install ghc --set javascript-unknown-ghcjs-9.10.0.20240413
         - name: Build project
           run: cabal build
         - name: Move files
           run: |
             mkdir ./public
-            mv dist-newstyle/build/javascript-ghcjs/ghc-9.6.2/ghc-javascript-example-0.1.0.0/x/ghc-javascript-example/build/ghc-javascript-example/ghc-javascript-example.jsexe/index.html ./public
-            mv dist-newstyle/build/javascript-ghcjs/ghc-9.6.2/ghc-javascript-example-0.1.0.0/x/ghc-javascript-example/build/ghc-javascript-example/ghc-javascript-example.jsexe/all.js ./public
+            mv dist-newstyle/build/javascript-ghcjs/ghc-9.10.0.20240413/ghc-javascript-example-0.1.0.0/x/ghc-javascript-example/build/ghc-javascript-example/ghc-javascript-example.jsexe/index.html ./public
+            mv dist-newstyle/build/javascript-ghcjs/ghc-9.10.0.20240413/ghc-javascript-example-0.1.0.0/x/ghc-javascript-example/build/ghc-javascript-example/ghc-javascript-example.jsexe/all.js ./public
         - name: Deploy
           uses: peaceiris/actions-gh-pages@v3
           with:
